@@ -3,9 +3,11 @@ package com.qsoft.persistence.dao.impl;
 import com.qsoft.persistence.dao.BankAccountDAO;
 import com.qsoft.persistence.entities.BankAccount;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  * Created with IntelliJ IDEA.
@@ -15,14 +17,15 @@ import javax.persistence.EntityManager;
  * To change this template use File | Settings | File Templates.
  */
 @Transactional
+@Component
 public class BankAccountDAOImpl implements BankAccountDAO {
 
-    @Autowired
+    @PersistenceContext
     private EntityManager entityManager;
 
     @Override
     public void save(BankAccount bankAccount) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        entityManager.persist(bankAccount);
     }
 
     @Override
