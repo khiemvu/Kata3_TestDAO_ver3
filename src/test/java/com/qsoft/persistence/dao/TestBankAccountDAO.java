@@ -27,7 +27,7 @@ import static junit.framework.Assert.assertFalse;
  * To change this template use File | Settings | File Templates.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:test-config.xml")
+@ContextConfiguration(locations = {"classpath:test-config.xml"})
 public class TestBankAccountDAO {
     @Autowired
     private BankAccountDAO bankAccountDAO;
@@ -36,7 +36,7 @@ public class TestBankAccountDAO {
     private
     DataSource dataSourceTest;
 
-    private IDatabaseTester iDatabaseTester;
+    private IDatabaseTester iDatabasetest;
 
     @Before
     public void setup() throws Exception
@@ -52,16 +52,16 @@ public class TestBankAccountDAO {
 
     private void cleanlyInsert(IDataSet dataSet) throws Exception
     {
-        iDatabaseTester = new DataSourceDatabaseTester(dataSourceTest);
-        iDatabaseTester.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);
-        iDatabaseTester.setDataSet(dataSet);
-        iDatabaseTester.onSetup();
+        iDatabasetest = new DataSourceDatabaseTester(dataSourceTest);
+        iDatabasetest.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);
+        iDatabasetest.setDataSet(dataSet);
+        iDatabasetest.onSetup();
     }
 
     @After
     public void tearDown() throws Exception
     {
-        iDatabaseTester.onTearDown();
+        iDatabasetest.onTearDown();
     }
 
     @Test

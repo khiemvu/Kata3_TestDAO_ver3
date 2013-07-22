@@ -2,7 +2,6 @@ package com.qsoft.persistence.dao.impl;
 
 import com.qsoft.persistence.dao.TransactionDAO;
 import com.qsoft.persistence.entities.Transaction;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;

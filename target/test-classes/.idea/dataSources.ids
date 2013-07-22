@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source source="LOCAL" name="Data Source" product="PostgreSQL" version="9.2.4" jdbc-version="4.0" driver-name="PostgreSQL Native Driver" driver-version="PostgreSQL 9.0 JDBC4 (build 801)" uuid="f122793b-029d-4586-ab50-0100237c04fb">
+    <identifier-quote-string>&quot;</identifier-quote-string>
+    <synchronize>true</synchronize>
+    <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+    <jdbc-url>jdbc:postgresql://localhost:5432/bank_account</jdbc-url>
+    <user-name>bank_acc</user-name>
+    <user-password>df9bdf98df99df9edf9fdf9c</user-password>
+    <schema-pattern>bank_account.public</schema-pattern>
+    <default-schemas>bank_account.public</default-schemas>
+    <libraries>
+      <library>
+        <url>jar://$MAVEN_REPOSITORY$/postgresql/postgresql/9.1-901.jdbc4/postgresql-9.1-901.jdbc4.jar!/</url>
+      </library>
+    </libraries>
+    <schema name="public" catalog="bank_account"/>
+    <table name="bank_account" schema="public" catalog="bank_account" type="TABLE">
+      <column name="id" sqlType="bigserial" length="19" precision="0" nullable="false" jdbcType="-5" def="bmV4dHZhbCgnaWRfYWNjX3NlcSc6OnJlZ2NsYXNzKQ==" autoIncrement="true"/>
+      <column name="number_acc" sqlType="text" length="2147483647" precision="0" nullable="true" jdbcType="12"/>
+      <column name="balance" sqlType="text" length="2147483647" precision="0" nullable="true" jdbcType="12"/>
+      <column name="des" sqlType="text" length="2147483647" precision="0" nullable="true" jdbcType="12"/>
+      <column name="time_stamp" sqlType="int8" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="bank_account_pkey" columns="id"/>
+    </table>
+    <table name="id_acc_seq" schema="public" catalog="bank_account" type="SEQUENCE">
+      <column name="sequence_name" sqlType="name" length="2147483647" precision="0" nullable="false" jdbcType="12"/>
+      <column name="last_value" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="start_value" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="increment_by" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="max_value" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="min_value" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="cache_value" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="log_cnt" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="is_cycled" sqlType="bool" length="1" precision="0" nullable="false" jdbcType="-7"/>
+      <column name="is_called" sqlType="bool" length="1" precision="0" nullable="false" jdbcType="-7"/>
+    </table>
+    <table name="id_transaction_seq" schema="public" catalog="bank_account" type="SEQUENCE">
+      <column name="sequence_name" sqlType="name" length="2147483647" precision="0" nullable="false" jdbcType="12"/>
+      <column name="last_value" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="start_value" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="increment_by" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="max_value" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="min_value" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="cache_value" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="log_cnt" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="is_cycled" sqlType="bool" length="1" precision="0" nullable="false" jdbcType="-7"/>
+      <column name="is_called" sqlType="bool" length="1" precision="0" nullable="false" jdbcType="-7"/>
+    </table>
+    <table name="manufacture" schema="public" catalog="bank_account" type="TABLE">
+      <column name="id" sqlType="bigserial" length="19" precision="0" nullable="false" jdbcType="-5" def="bmV4dHZhbCgnbWFudWZhY3R1cmVfaWRfc2VxJzo6cmVnY2xhc3Mp" autoIncrement="true"/>
+      <column name="name" sqlType="varchar" length="255" precision="0" nullable="false" jdbcType="12"/>
+      <column name="description" sqlType="text" length="2147483647" precision="0" nullable="true" jdbcType="12"/>
+      <column name="address" sqlType="text" length="2147483647" precision="0" nullable="false" jdbcType="12"/>
+      <column name="active" sqlType="bool" length="1" precision="0" nullable="true" jdbcType="-7"/>
+      <column name="phone" sqlType="varchar" length="15" precision="0" nullable="false" jdbcType="12"/>
+      <column name="email" sqlType="varchar" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <column name="website" sqlType="varchar" length="255" precision="0" nullable="true" jdbcType="12"/>
+      <primary-key name="manufacture_pkey" columns="id"/>
+      <exported-key name="model_manufacture_id_fkey" table="model" schema="public" catalog="bank_account" columns="manufacture_id"/>
+    </table>
+    <table name="manufacture_id_seq" schema="public" catalog="bank_account" type="SEQUENCE">
+      <column name="sequence_name" sqlType="name" length="2147483647" precision="0" nullable="false" jdbcType="12"/>
+      <column name="last_value" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="start_value" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="increment_by" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="max_value" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="min_value" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="cache_value" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="log_cnt" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="is_cycled" sqlType="bool" length="1" precision="0" nullable="false" jdbcType="-7"/>
+      <column name="is_called" sqlType="bool" length="1" precision="0" nullable="false" jdbcType="-7"/>
+    </table>
+    <table name="model" schema="public" catalog="bank_account" type="TABLE">
+      <column name="id" sqlType="bigserial" length="19" precision="0" nullable="false" jdbcType="-5" def="bmV4dHZhbCgnbW9kZWxfaWRfc2VxJzo6cmVnY2xhc3Mp" autoIncrement="true"/>
+      <column name="name" sqlType="varchar" length="255" precision="0" nullable="false" jdbcType="12"/>
+      <column name="description" sqlType="text" length="2147483647" precision="0" nullable="true" jdbcType="12"/>
+      <column name="year_product" sqlType="varchar" length="10" precision="0" nullable="false" jdbcType="12"/>
+      <column name="manufacture" sqlType="varchar" length="255" precision="0" nullable="false" jdbcType="12"/>
+      <column name="manufacture_id" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="model_pkey" columns="id"/>
+      <foreign-key name="model_manufacture_id_fkey" columns="manufacture_id" ref-table="manufacture" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+    </table>
+    <table name="model_id_seq" schema="public" catalog="bank_account" type="SEQUENCE">
+      <column name="sequence_name" sqlType="name" length="2147483647" precision="0" nullable="false" jdbcType="12"/>
+      <column name="last_value" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="start_value" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="increment_by" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="max_value" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="min_value" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="cache_value" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="log_cnt" sqlType="int8" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="is_cycled" sqlType="bool" length="1" precision="0" nullable="false" jdbcType="-7"/>
+      <column name="is_called" sqlType="bool" length="1" precision="0" nullable="false" jdbcType="-7"/>
+    </table>
+    <table name="transaction" schema="public" catalog="bank_account" type="TABLE">
+      <column name="id_transaction" sqlType="bigserial" length="19" precision="0" nullable="false" jdbcType="-5" def="bmV4dHZhbCgnaWRfdHJhbnNhY3Rpb25fc2VxJzo6cmVnY2xhc3Mp" autoIncrement="true"/>
+      <column name="number_account" sqlType="text" length="2147483647" precision="0" nullable="true" jdbcType="12"/>
+      <column name="amount" sqlType="int8" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <column name="des" sqlType="text" length="2147483647" precision="0" nullable="true" jdbcType="12"/>
+      <column name="time_stamp" sqlType="int8" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="transaction_pkey" columns="id_transaction"/>
+    </table>
+  </data-source>
+</component>
