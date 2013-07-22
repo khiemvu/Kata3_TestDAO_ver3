@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 /**
@@ -17,7 +18,7 @@ import java.util.List;
  */
 @Transactional
 public class TransactionDAOImpl implements TransactionDAO {
-    @Autowired
+    @PersistenceContext
     private EntityManager entityManager;
     @Override
     public void save(Transaction transaction) {

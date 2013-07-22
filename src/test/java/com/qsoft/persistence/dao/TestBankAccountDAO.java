@@ -1,0 +1,76 @@
+package com.qsoft.persistence.dao;
+
+import com.qsoft.persistence.entities.BankAccount;
+import org.dbunit.DataSourceDatabaseTester;
+import org.dbunit.IDatabaseTester;
+import org.dbunit.dataset.IDataSet;
+import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
+import org.dbunit.operation.DatabaseOperation;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import javax.sql.DataSource;
+
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertFalse;
+
+/**
+ * Created with IntelliJ IDEA.
+ * User: Khiem
+ * Date: 7/22/13
+ * Time: 1:36 PM
+ * To change this template use File | Settings | File Templates.
+ */
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = "classpath:test-config.xml")
+public class TestBankAccountDAO {
+    @Autowired
+    private BankAccountDAO bankAccountDAO;
+
+    @Autowired
+    private
+    DataSource dataSourceTest;
+
+    private IDatabaseTester iDatabaseTester;
+
+    @Before
+    public void setup() throws Exception
+    {
+        IDataSet dataSet = readDataSet();
+        cleanlyInsert(dataSet);
+    }
+
+    private IDataSet readDataSet() throws Exception
+    {
+        return new FlatXmlDataSetBuilder().build(System.class.getResource("/dataset.xml"));
+    }
+
+    private void cleanlyInsert(IDataSet dataSet) throws Exception
+    {
+        iDatabaseTester = new DataSourceDatabaseTester(dataSourceTest);
+        iDatabaseTester.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);
+        iDatabaseTester.setDataSet(dataSet);
+        iDatabaseTester.onSetup();
+    }
+
+    @After
+    public void tearDown() throws Exception
+    {
+        iDatabaseTester.onTearDown();
+    }
+
+    @Test
+    public void testGetInfoABankAccountFromDB(){
+        BankAccount bankAccount = bankAccountDAO.find("0123456789");
+        assertFalse(bankAccount==null);
+        assertEquals("0123456789", bankAccount.getNumber_acc());
+        assertEquals(100.0, bankAccount.getBalance());
+        assertEquals(1000, bankAccount.getTime_stamp());
+    }
+
+}

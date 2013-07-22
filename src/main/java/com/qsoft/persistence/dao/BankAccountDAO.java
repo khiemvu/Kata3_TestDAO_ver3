@@ -12,5 +12,5 @@ import com.qsoft.persistence.entities.BankAccount;
 public interface BankAccountDAO {
     public void save(BankAccount bankAccount);
 
-    public void find(String number_acc);
+    public BankAccount find(String number_acc);
 }

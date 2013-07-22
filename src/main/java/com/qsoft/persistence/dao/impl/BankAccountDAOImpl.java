@@ -2,12 +2,12 @@ package com.qsoft.persistence.dao.impl;
 
 import com.qsoft.persistence.dao.BankAccountDAO;
 import com.qsoft.persistence.entities.BankAccount;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  * Created with IntelliJ IDEA.
@@ -29,7 +29,9 @@ public class BankAccountDAOImpl implements BankAccountDAO {
     }
 
     @Override
-    public void find(String number_acc) {
-        //To change body of implemented methods use File | Settings | File Templates.
+    public BankAccount find(String number_acc) {
+        Query query = entityManager.createQuery("select b from BankAccount b where b.number_acc = :number_acc");
+        query.setParameter("number_acc", number_acc);
+        return (BankAccount) query.getSingleResult();
     }
 }
