@@ -15,6 +15,12 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.sql.DataSource;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
+
+import java.util.Set;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
@@ -29,6 +35,7 @@ import static junit.framework.Assert.assertFalse;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:test-config.xml"})
 public class TestBankAccountDAO {
+    private Validator validation;
     @Autowired
     private BankAccountDAO bankAccountDAO;
 
@@ -43,6 +50,9 @@ public class TestBankAccountDAO {
     {
         IDataSet dataSet = readDataSet();
         cleanlyInsert(dataSet);
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        validation = factory.getValidator();
+
     }
 
     private IDataSet readDataSet() throws Exception
@@ -82,6 +92,14 @@ public class TestBankAccountDAO {
         assertEquals(account.getTime_stamp(), bankAccount.getTime_stamp());
         assertEquals(account.getBalance(), bankAccount.getBalance());
         assertEquals(account.getDes(), bankAccount.getDes());
+    }
+    @Test
+    public void testOpenABankAccountWithBalanceLessThanZero(){
+        BankAccount bankAccount = new BankAccount("1234567089",-1000, 100L, "deposit");
+        Set<ConstraintViolation<BankAccount>> violations = validation.validate(bankAccount, ValidateBalance.class);
+        assertEquals(violations.size(),1);
+        assertEquals("Balance must greater than 0", violations.iterator().next().getMessage());
+
     }
 
 }
