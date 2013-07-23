@@ -73,4 +73,15 @@ public class TestBankAccountDAO {
         assertEquals(1000, bankAccount.getTime_stamp());
     }
 
+    @Test
+    public void testSaveABankAccount(){
+        BankAccount bankAccount = new BankAccount("0987654321", 100, 1000L, "deposit");
+        bankAccountDAO.save(bankAccount);
+        BankAccount account = bankAccountDAO.find("0987654321");
+        assertEquals(account.getNumber_acc(), bankAccount.getNumber_acc());
+        assertEquals(account.getTime_stamp(), bankAccount.getTime_stamp());
+        assertEquals(account.getBalance(), bankAccount.getBalance());
+        assertEquals(account.getDes(), bankAccount.getDes());
+    }
+
 }
