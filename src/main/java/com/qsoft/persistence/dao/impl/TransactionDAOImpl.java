@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.List;
 
 /**
@@ -26,7 +27,10 @@ public class TransactionDAOImpl implements TransactionDAO {
 
     @Override
     public List<Transaction> getAllTransaction(String number_acc) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        Query query = entityManager.createQuery("select t from Transaction t where t.number_account = :number_acc");
+        query.setParameter("number_acc",number_acc);
+        List<Transaction> transactionList = query.getResultList();
+        return transactionList;
     }
 
     @Override
