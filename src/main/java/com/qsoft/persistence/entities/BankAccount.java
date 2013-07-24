@@ -2,11 +2,12 @@ package com.qsoft.persistence.entities;
 
 import com.qsoft.persistence.dao.ValidateBalance;
 import com.qsoft.persistence.dao.ValidateNumberAcc;
+import com.qsoft.persistence.dao.ValidateTimeStamp;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
-
+import javax.validation.constraints.NotNull;
 
 
 /**
@@ -77,7 +78,7 @@ public class BankAccount {
     public void setDes(String des) {
         this.des = des;
     }
-
+    @NotNull(message = "TimeStamp is compulsory", groups = ValidateTimeStamp.class)
     public long getTime_stamp() {
         return time_stamp;
     }
