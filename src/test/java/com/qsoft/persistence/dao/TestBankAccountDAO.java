@@ -163,12 +163,12 @@ public class TestBankAccountDAO {
 
     @Test
     public void testGetAllNTransaction(){
-        List<Transaction> listTransaction = transactionDAO.getAllTransaction("0123456789",2);
-        assertEquals(listTransaction.size(), 2);
-        assertEquals(listTransaction.get(0).getTime_stamp(),30000L);
-        assertEquals(listTransaction.get(0).getBalance(),1000.0);
-        assertEquals(listTransaction.get(0).getDes(),"withdraw");
-        assertEquals(listTransaction.get(1).getTime_stamp(), 60000);
+        List<Transaction> listTransaction = transactionDAO.getAllTransaction("0123456789",3);
+        assertEquals(listTransaction.size(), 3);
+        assertEquals(listTransaction.get(1).getTime_stamp(),30000L);
+        assertEquals(listTransaction.get(1).getBalance(),1000.0);
+        assertEquals(listTransaction.get(1).getDes(),"withdraw");
+        assertEquals(listTransaction.get(2).getTime_stamp(), 60000);
     }
 
 }

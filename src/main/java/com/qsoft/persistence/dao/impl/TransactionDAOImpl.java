@@ -47,6 +47,11 @@ public class TransactionDAOImpl implements TransactionDAO {
 
     @Override
     public List<Transaction> getAllTransaction(String number_acc, int number) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        Query query = entityManager.createQuery("select t from Transaction t where t.number_account = :number_acc ");
+
+        query.setParameter("number_acc", number_acc);
+        query.setMaxResults(number);
+        List<Transaction> list = query.getResultList();
+        return list;
     }
 }
