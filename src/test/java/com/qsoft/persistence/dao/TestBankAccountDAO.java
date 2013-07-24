@@ -21,6 +21,7 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
+import java.util.List;
 import java.util.Set;
 
 import static junit.framework.Assert.assertEquals;
@@ -39,6 +40,9 @@ public class TestBankAccountDAO {
     private static Validator validation;
     @Autowired
     private BankAccountDAO bankAccountDAO;
+
+    @Autowired
+    private TransactionDAO transactionDAO;
 
     @Autowired
     private
@@ -137,6 +141,14 @@ public class TestBankAccountDAO {
         Set<ConstraintViolation<Transaction>> violations = validation.validate(transaction, ValidateAmount.class);
         assertEquals(violations.size(), 1);
         assertEquals("Amount for do transaction must greater 0", violations.iterator().next().getMessage());
+    }
+    @Test
+    public void testGetAllTransactionFromDB(){
+        List<Transaction> transactionList = transactionDAO.getAllTransaction("0123456789");
+        assertEquals(transactionList.size(), 3);
+        assertEquals(transactionList.get(0).getDes(), "deposit");
+        assertEquals(transactionList.get(0).getBalance(), 10000.0);
+        assertEquals(transactionList.get(2).getTime_stamp(),60000);
     }
 
 }
