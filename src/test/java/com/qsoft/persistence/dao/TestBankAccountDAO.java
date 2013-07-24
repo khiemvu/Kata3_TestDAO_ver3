@@ -1,6 +1,7 @@
 package com.qsoft.persistence.dao;
 
 import com.qsoft.persistence.entities.BankAccount;
+import com.qsoft.persistence.entities.Transaction;
 import org.dbunit.DataSourceDatabaseTester;
 import org.dbunit.IDatabaseTester;
 import org.dbunit.dataset.IDataSet;
@@ -129,6 +130,13 @@ public class TestBankAccountDAO {
         assertEquals(violations.size(),1);
         assertEquals("TimeStamp is compulsory", violations.iterator().next().getMessage());
 
+    }
+    @Test
+    public void testDoTransactionWithAmountNegative(){
+        Transaction transaction = new Transaction("0123456789", -100, "deposit", 100L);
+        Set<ConstraintViolation<Transaction>> violations = validation.validate(transaction, ValidateAmount.class);
+        assertEquals(violations.size(), 1);
+        assertEquals("Amount for do transaction must greater 0", violations.iterator().next().getMessage());
     }
 
 }
