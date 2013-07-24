@@ -1,9 +1,13 @@
 package com.qsoft.persistence.entities;
 
 import com.qsoft.persistence.dao.ValidateBalance;
+import com.qsoft.persistence.dao.ValidateNumberAcc;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
+
+
 
 /**
  * Created with IntelliJ IDEA.
@@ -42,7 +46,7 @@ public class BankAccount {
 
     public BankAccount() {
     }
-
+    @Length(max = 10, min = 10, message = "Number Bank Acccount must has length is 10", groups = ValidateNumberAcc.class)
     public String getNumber_acc() {
         return number_acc;
     }

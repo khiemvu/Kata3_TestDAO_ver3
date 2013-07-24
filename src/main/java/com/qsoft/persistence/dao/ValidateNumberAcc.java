@@ -5,5 +5,5 @@ package com.qsoft.persistence.dao;
  * Date: 7/24/13
  * Time: 7:02 AM
  */
-public class ValidateNumberAcc {
+public interface ValidateNumberAcc {
 }
