@@ -8,6 +8,7 @@ import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,6 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
-
 import java.util.Set;
 
 import static junit.framework.Assert.assertEquals;
@@ -35,7 +35,7 @@ import static junit.framework.Assert.assertFalse;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:test-config.xml"})
 public class TestBankAccountDAO {
-    private Validator validation;
+    private static Validator validation;
     @Autowired
     private BankAccountDAO bankAccountDAO;
 
@@ -50,9 +50,13 @@ public class TestBankAccountDAO {
     {
         IDataSet dataSet = readDataSet();
         cleanlyInsert(dataSet);
+
+
+    }
+    @BeforeClass
+    public static void init(){
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validation = factory.getValidator();
-
     }
 
     private IDataSet readDataSet() throws Exception

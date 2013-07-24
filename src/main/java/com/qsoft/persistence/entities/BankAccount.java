@@ -1,6 +1,9 @@
 package com.qsoft.persistence.entities;
 
+import com.qsoft.persistence.dao.ValidateBalance;
+
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 
 /**
  * Created with IntelliJ IDEA.
@@ -47,7 +50,7 @@ public class BankAccount {
     public void setNumber_acc(String number_acc) {
         this.number_acc = number_acc;
     }
-
+    @Min(value = 0, message = "Balance must greater than 0", groups = ValidateBalance.class)
     public double getBalance() {
         return balance;
     }
