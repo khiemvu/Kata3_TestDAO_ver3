@@ -105,5 +105,13 @@ public class TestBankAccountDAO {
         assertEquals("Balance must greater than 0", violations.iterator().next().getMessage());
 
     }
+    @Test
+    public void testOpentABankAccountWithNumberAccountLessThan10Number(){
+        BankAccount bankAccount = new BankAccount("123456789", 1000, 1000L, "deposit");
+        Set<ConstraintViolation<BankAccount>> violations = validation.validate(bankAccount, ValidateNumberAcc.class);
+        assertEquals(violations.size(),1);
+        assertEquals("Number Bank Acccount must has length is 10", violations.iterator().next().getMessage());
+
+    }
 
 }
