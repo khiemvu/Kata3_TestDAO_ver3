@@ -155,7 +155,7 @@ public class TestBankAccountDAO {
     public void testGetAllTransactionFromStartTimeToStopTime(){
         List<Transaction> listTransaction = transactionDAO.getAllTransaction("0123456789",2500L, 70000L);
         assertEquals(listTransaction.size(), 2);
-        assertEquals(listTransaction.get(0).getTime_stamp(),3000L);
+        assertEquals(listTransaction.get(0).getTime_stamp(),30000L);
         assertEquals(listTransaction.get(0).getBalance(),1000.0);
         assertEquals(listTransaction.get(0).getDes(),"withdraw");
         assertEquals(listTransaction.get(1).getTime_stamp(), 60000);

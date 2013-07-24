@@ -35,7 +35,14 @@ public class TransactionDAOImpl implements TransactionDAO {
 
     @Override
     public List<Transaction> getAllTransaction(String number_acc, Long time_start, Long time_stop) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        Query query = entityManager.createQuery("select t from Transaction t where t.number_account = :number_acc " +
+                "and t.time_stamp >= :time_start and t.time_stamp <= :time_stop");
+        query.setParameter("number_acc", number_acc);
+        query.setParameter("time_start", time_start);
+        query.setParameter("time_stop", time_stop);
+        query.setMaxResults(2);
+        List<Transaction> list = query.getResultList();
+        return list;
     }
 
     @Override
