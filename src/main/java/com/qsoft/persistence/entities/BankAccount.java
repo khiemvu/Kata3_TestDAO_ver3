@@ -46,6 +46,13 @@ public class BankAccount {
 
     public BankAccount() {
     }
+
+    public BankAccount(String number_acc, double balance, String des) {
+        this.number_acc = number_acc;
+        this.balance = balance;
+        this.des = des;
+    }
+
     @Length(max = 10, min = 10, message = "Number Bank Acccount must has length is 10", groups = ValidateNumberAcc.class)
     public String getNumber_acc() {
         return number_acc;

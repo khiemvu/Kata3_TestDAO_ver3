@@ -122,4 +122,13 @@ public class TestBankAccountDAO {
 
     }
 
+    @Test
+    public void testOpentABankAccountWithNoTimeStamp(){
+        BankAccount bankAccount = new BankAccount("12345678900", 1000, "deposit");
+        Set<ConstraintViolation<BankAccount>> violations = validation.validate(bankAccount, ValidateTimeStamp.class);
+        assertEquals(violations.size(),1);
+        assertEquals("TimeStamp is compulsory", violations.iterator().next().getMessage());
+
+    }
+
 }
